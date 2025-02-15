@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>File Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper"> 
+        <nav class="sidebar">
+            <div class="sidebar-top">
+                <a href="#" class="logo__wrapper">
+                    <img src="assets/logo.png" alt="Logo" class="logo">
+                    <img src="assets/logo-small.png" alt="Logo" class="logo-small">
+                </a>
+            </div>
+
+            <div class="sidebar-links">
+                <ul>
+                    <li>
+                        <a href="https://lanteacorp.com" target="_blank" title="Home" class="tooltip">
+                            <img src="assets/home.svg" alt="Home Icon" class="sidebar-icon">
+                            <span class="sidebar-text">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" data-folder="Games" title="Games" class="tooltip">
+                            <img src="assets/games.svg" alt="Games Icon" class="sidebar-icon">
+                            <span class="sidebar-text">Games</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" data-folder="Websites" title="Websites" class="tooltip">
+                            <img src="assets/websites.svg" alt="Websites Icon" class="sidebar-icon">
+                            <span class="sidebar-text">Websites</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" data-folder="Members" title="Members" class="tooltip">
+                            <img src="assets/members.svg" alt="Members Icon" class="sidebar-icon">
+                            <span class="sidebar-text">Members</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-bottom">
+                <img src="assets/diamond.png" alt="Diamond">
+                <a href="https://www.lanteacorp.com" target="_blank">
+                    <button>Explore!</button>
+                </a>
+            </div>
+
+            <!-- Sidebar Collapse Button -->
+            <button id="collapse-btn" class="expand-btn">
+                <img src="assets/right-collapse.svg" alt="Collapse Sidebar">
+            </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="main-content">
+            <section id="file-manager">
+                <div class="file-manager-header">
+                    <!-- Dark Mode Toggle -->
+                    <button id="dark-mode-btn" class="dark-mode-btn">
+                        <img id="moon-icon" src="assets/moon.svg" alt="Moon">
+                        <img id="sun-icon" src="assets/sun.svg" alt="Sun">
+                    </button>
+                </div>
+
+                <!-- Preview Container -->
+                <div id="preview-container" class="preview-container"></div>
+
+                <!-- Scrollable File Explorer Container -->
+                <div class="file-explorer-container">
+                    <div id="file-explorer" class="file-explorer"></div>
+                </div>
+        
+                <!-- Toggle View Button -->
+                <div class="toggle-view-container">
+                    <button id="toggle-view" class="toggle-view-btn">
+                        <img src="assets/gallery.svg" alt="Gallery View">
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

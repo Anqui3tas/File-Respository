@@ -1,0 +1,799 @@
+/* ============================= */
+/*         GENERAL STYLES        */
+/* ============================= */
+:root {
+  --primary-color: #272727;
+  --text: white;
+  --background: #F4F5FC;
+  --sidebar-gray-background: #DCE1EB;
+  --dark-background: #252525;
+  --file-item-dark: #2a2a2a;
+  --red: #F55E5E;
+  --item-hover: #F0F0F0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--background);
+  padding: 1rem;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent page scrolling */
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Ensures no extra scrolling */
+}
+
+#main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+}
+
+/* ============================= */
+/*           SIDEBAR             */
+/* ============================= */
+/* Ensure icons and text align properly */
+.sidebar-links a {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Spacing between icon and text */
+  padding: 10px;
+}
+
+/* Default (light mode) - Icons are black */
+.sidebar-icon {
+  filter: invert(0); /* Black icons in light mode */
+  transition: filter 0.2s ease-in-out;
+}
+
+/* Dark mode - Turn icons white */
+body.dark-mode .sidebar-icon {
+  filter: invert(1); /* White icons in dark mode */
+}
+
+/* By default, show text */
+.sidebar-text {
+  display: inline-block;
+}
+
+/* When collapsed, hide text and center icons */
+body.collapsed .sidebar-text {
+  display: none;
+}
+
+body.collapsed .sidebar-links a {
+  justify-content: center;
+  padding: 10px 0;
+}
+
+/* ============================= */
+/*           SIDEBAR             */
+/* ============================= */
+nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  border-radius: 1rem; /* rounds all corners */
+  overflow: hidden;    /* ensures bottom corners are rounded */
+  width: 12rem;
+  padding: 1rem 0.625rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--sidebar-gray-background);
+  transition: width 0.2s ease-in-out;
+}
+
+body.collapsed nav {
+  width: 4.75rem;
+}
+
+body.dark-mode nav {
+  background-color: var(--dark-background);
+}
+
+/* Sidebar Top */
+.sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+}
+
+/* Sidebar Logo */
+.logo {
+  height: 2.6125rem;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.logo-small {
+  height: 2.6125rem;
+  max-width: 100%;
+  display: none;
+  object-fit: contain;
+}
+
+body.collapsed .logo {
+  display: none;
+}
+
+body.collapsed .logo-small {
+  display: block;
+}
+
+/* Sidebar Links */
+.sidebar-links {
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--sidebar-gray-background);
+}
+
+.sidebar-links ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+.sidebar-links li {
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar-links li a {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+  border-radius: 0.625rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.sidebar-links li a:hover {
+  background-color: var(--item-hover);
+}
+
+body.dark-mode .sidebar-links li a {
+  color: white;
+}
+
+/* Sidebar Bottom */
+.sidebar-bottom {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: auto;
+  text-align: center;
+  border-radius: 1rem; /* rounds all corners */
+  padding-top: 4rem;
+  margin-bottom: 3rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.sidebar-bottom img {
+  max-width: 10.25rem;
+  margin: 0 auto;
+  width: 100%;
+  margin-top: -5.25rem;
+}
+
+/* Sidebar Bottom Button */
+.sidebar-bottom button {
+  border-radius: 1rem;
+  outline: none;
+  margin: 0 auto;
+  margin-bottom: 1.75rem;
+  cursor: pointer;
+  min-height: 2.612rem;
+  font-weight: 800;
+  border: 1.5px solid var(--sidebar-gray-background);
+  padding: 0.5rem 0.275rem;
+  background-color: var(--background);
+  width: 90%; /* Adjust width to fit inside */
+  max-width: 10rem; /* Prevents overflow */
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+}
+
+/* Sidebar Button Hover */
+.sidebar-bottom button:hover {
+  background-color: var(--primary-color);
+  color: var(--item-hover);
+}
+
+/* Light Mode - Make Button Black */
+body:not(.dark-mode) .sidebar-bottom button {
+  background-color: black;
+  color: white;
+}
+
+/* Light Mode - Hover Effect */
+body:not(.dark-mode) .sidebar-bottom button:hover {
+  background-color: var(--primary-color);
+  color: var(--item-hover);
+}
+
+/* When Sidebar is Collapsed */
+body.collapsed .sidebar-bottom button {
+  width: 40px; /* Adjusts to match sidebar size */
+  height: 40px;
+  padding: 0; /* Remove extra padding */
+  font-size: 0; /* Hide text but keep icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Collapsed Sidebar Button Styling */
+body.collapsed .sidebar-bottom button {
+  width: 40px; /* Matches sidebar size */
+  height: 40px;
+  padding: 0; /* Remove extra padding */
+  font-size: 0; /* Hide text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("assets/explore.svg") no-repeat center;
+  background-size: 50%; /* Ensures proper fit */
+  background-color: white; /* White button background */
+  border: 2px solid white; /* Keeps the white border */
+  border-radius: 50%; /* Ensures a circular button */
+  cursor: pointer;
+}
+
+/* Ensuring the Icon is Solid Black */
+body.collapsed .sidebar-bottom button::before {
+  filter: brightness(0); /* Turns the icon solid black */
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+body.collapsed .sidebar-bottom button:hover::before {
+  color: var(--item-hover);
+}
+
+/* ============================= */
+/*        FILE MANAGER           */
+/* ============================= */
+#file-manager {
+  padding: 1rem;
+  background-color: var(--background);
+  margin-left: 1rem;
+  border-radius: 1rem; /* rounds all four corners */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: calc(100% - 5rem);
+  max-width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ============================= */
+/*       FILE EXPLORER           */
+/* ============================= */
+#file-explorer {
+  width: calc(100% - 2rem);   /* same width regardless of view */
+  max-width: 1200px;
+  /* 
+     UPDATED: Reduced subtraction value to extend the file list area further down in grid view.
+     (Fine tune: change "6rem" to a lower value if you want even more space)
+  */
+  height: calc(100vh - 7rem); 
+  margin: 1rem;
+  overflow-y: auto;
+}
+
+/* ----------------------------- */
+/*        GRID VIEW STYLES       */
+/* ----------------------------- */
+#file-manager.grid-view #file-explorer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: start;
+}
+
+/* ----------------------------- */
+/*       GALLERY VIEW STYLES     */
+/* ----------------------------- */
+#file-manager.gallery-view {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 5rem);
+  height: 100%;
+  overflow: hidden; /* No vertical scrolling */
+}
+
+#file-manager.gallery-view .preview-container {
+  flex: 0 0 65%;           /* Adjust as needed, e.g., 60% or 70% */
+  margin: 0.5rem 1rem 0;   /* top=0.5rem, left/right=1rem, bottom=0 */
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.05);
+  width: calc(100% - 2rem); /* Matches horizontal margins (2rem total) */
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;  /* Center preview item horizontally */
+  align-items: center;      /* Center preview item vertically */
+}
+
+#file-manager.gallery-view #file-explorer {
+  display: flex;
+  flex-wrap: nowrap;
+  /* Force left alignment */
+  justify-content: flex-start;
+  align-items: flex-start; 
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin: 0.5rem 1rem 1rem; /* Or whatever spacing you like */
+  width: calc(100% - 2rem);
+  max-width: 1200px;
+}
+
+#file-manager.gallery-view .gallery-list {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start; /* Left-align file items */
+  align-items: flex-start;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin: 0;  /* Ensure no extra margin that might center items */
+  width: 100%;
+  min-width: 100%;
+}
+
+/* Prevent last item from being cut off horizontally */
+#file-manager.gallery-view .gallery-list::after {
+  content: "";
+  display: block;
+  width: 180px;
+  flex-shrink: 0;
+}
+
+/* FILE ITEMS IN GALLERY VIEW */
+#file-manager.gallery-view .file-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 180px;
+  margin: 0 10px 0 0; 
+  flex-shrink: 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* If you prefer no extra space after the last item: */
+#file-manager.gallery-view .file-item:last-child {
+  margin-right: 0;
+}
+
+/* ----------------------------- */
+/*      Preview Box Styling      */
+/* ----------------------------- */
+.preview-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ============================= */
+/*   FILE NAME WRAPPING FIX      */
+/* ============================= */
+
+/* Wrap long file names inside file items */
+.gallery-view .file-item span {
+  display: block;
+  max-width: 150px; /* Prevents text from being too wide */
+  word-wrap: break-word; /* Wrap onto the next line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; /* Ensures wrapping */
+  font-size: 14px; /* Reduce size for better readability */
+  line-height: 1.2;
+  text-align: center;
+}
+/* ============================= */
+/*        FILE ITEMS             */
+/* ============================= */
+.file-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  background-color: #F0F0F0;
+  color: black;
+  width: 180px;
+  height: 180px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent !important;
+}
+
+.file-item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 0.5rem;
+  object-fit: contain;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 0.25em; /* Space between the download icon and the file name */
+}
+
+.download-link {
+  display: inline-block;
+}
+
+.download-link img.download-icon {
+  height: 1em;      /* Same height as current font size */
+  width: auto;
+  vertical-align: middle;
+  margin-right: 0.25em; /* Space between icon and text (if text is later added) */
+  filter: invert(0); /* Black in light mode */
+}
+
+body.dark-mode .download-link img.download-icon {
+  filter: invert(1); /* White in dark mode */
+}
+
+/* ============================= */
+/*        RESPONSIVENESS         */
+/* ============================= */
+@media (min-width: 1600px) {
+  #file-explorer {
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 1rem !important;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1599px) {
+  #file-explorer {
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+}
+
+/* ============================= */
+/*          DARK MODE            */
+/* ============================= */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* Sidebar & File Manager Background */
+body.dark-mode nav,
+body.dark-mode #file-manager {
+  background-color: var(--dark-background);
+}
+
+body.dark-mode .sidebar-links a {
+  color: #e0e0e0;
+  transition: color 0.2s ease-in-out;
+}
+
+body.dark-mode .sidebar-links li a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* File Items */
+body.dark-mode .file-item {
+  background-color: var(--file-item-dark);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============================= */
+/*       BUTTONS & TOGGLES       */
+/* ============================= */
+#back-button,
+#dark-mode-btn,
+#toggle-view,
+#collapse-btn {
+  position: fixed;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+body.inside-folder #back-button {
+  display: flex; /* Show only when inside a folder */
+}
+
+/* Hide the floating back button when in gallery view */
+.gallery-view #back-button {
+  display: none !important;
+}
+
+#dark-mode-btn { bottom: 55px; right: 10px; }
+#toggle-view { bottom: 10px; right: 10px; }
+
+#collapse-btn {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+body.collapsed #collapse-btn {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+body.dark-mode #back-button,
+body.dark-mode #dark-mode-btn,
+body.dark-mode #toggle-view,
+body.dark-mode #collapse-btn {
+  background-color: #e0e0e0;
+}
+
+
+/* ============================= */
+/*       LOADING CUBE            */
+/* ============================= */
+
+/* Cube Wrapper: The inline style in the overlay now sets --cube-side and --cube-side-half */
+.cube-wrapper {
+  min-height: 4rem;
+  position: relative;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateX(-37.5deg) rotateY(45deg);
+  }
+  50% {
+    transform: rotateX(-37.5deg) rotateY(405deg);
+  }
+  100% {
+    transform: rotateX(-37.5deg) rotateY(405deg);
+  }
+}
+
+.cube, .cube * {
+  position: absolute;
+  width: var(--cube-side);
+  height: var(--cube-side);
+  top: 0.25rem;
+  left: -0.4rem;
+}
+
+.sides {
+  animation: rotate 3s ease infinite;
+  animation-delay: 0.8s;
+  transform-style: preserve-3d;
+  transform: rotateX(-37.5deg) rotateY(45deg);
+}
+
+.cube .sides * {
+  box-sizing: border-box;
+  background: var(--primary);
+  border: 0.1rem solid white;
+}
+
+.cube .sides .top {
+  animation: top-animation 3s ease infinite;
+  animation-delay: 0ms;
+  transform: rotateX(90deg) translateZ(var(--cube-side));
+  animation-fill-mode: forwards;
+  transform-origin: 50% 50%;
+}
+
+@keyframes top-animation {
+  0% {
+    opacity: 1;
+    transform: rotateX(90deg) translateZ(var(--cube-side));
+  }
+  20% {
+    opacity: 1;
+    transform: rotateX(90deg) translateZ(var(--cube-side-half));
+  }
+  70% {
+    opacity: 1;
+    transform: rotateX(90deg) translateZ(var(--cube-side-half));
+  }
+  90% {
+    opacity: 1;
+    transform: rotateX(90deg) translateZ(var(--cube-side));
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(90deg) translateZ(var(--cube-side));
+  }
+}
+
+.cube .sides .bottom {
+  animation: bottom-animation 3s ease infinite;
+  animation-delay: 0ms;
+  transform: rotateX(-90deg) translateZ(var(--cube-side));
+  animation-fill-mode: forwards;
+  transform-origin: 50% 50%;
+}
+@keyframes bottom-animation {
+  0% {
+    opacity: 1;
+    transform: rotateX(-90deg) translateZ(var(--cube-side));
+  }
+  20% {
+    opacity: 1;
+    transform: rotateX(-90deg) translateZ(var(--cube-side-half));
+  }
+  70% {
+    opacity: 1;
+    transform: rotateX(-90deg) translateZ(var(--cube-side-half));
+  }
+  90% {
+    opacity: 1;
+    transform: rotateX(-90deg) translateZ(var(--cube-side));
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(-90deg) translateZ(var(--cube-side));
+  }
+}
+
+.cube .sides .front {
+  animation: front-animation 3s ease infinite;
+  animation-delay: 100ms;
+  transform: rotateY(0deg) translateZ(var(--cube-side));
+  animation-fill-mode: forwards;
+  transform-origin: 50% 50%;
+}
+@keyframes front-animation {
+  0% {
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(var(--cube-side));
+  }
+  20% {
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(var(--cube-side-half));
+  }
+  70% {
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(var(--cube-side-half));
+  }
+  90% {
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(var(--cube-side));
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg) translateZ(var(--cube-side));
+  }
+}
+
+.cube .sides .back {
+  animation: back-animation 3s ease infinite;
+  animation-delay: 100ms;
+  transform: rotateY(-180deg) translateZ(var(--cube-side));
+  animation-fill-mode: forwards;
+  transform-origin: 50% 50%;
+}
+@keyframes back-animation {
+  0% {
+    opacity: 1;
+    transform: rotateY(-180deg) translateZ(var(--cube-side));
+  }
+  20% {
+    opacity: 1;
+    transform: rotateY(-180deg) translateZ(var(--cube-side-half));
+  }
+  70% {
+    opacity: 1;
+    transform: rotateY(-180deg) translateZ(var(--cube-side-half));
+  }
+  90% {
+    opacity: 1;
+    transform: rotateY(-180deg) translateZ(var(--cube-side));
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(-180deg) translateZ(var(--cube-side));
+  }
+}
+
+.cube .sides .left {
+  animation: left-animation 3s ease infinite;
+  animation-delay: 100ms;
+  transform: rotateY(-90deg) translateZ(var(--cube-side));
+  animation-fill-mode: forwards;
+  transform-origin: 50% 50%;
+}
+@keyframes left-animation {
+  0% {
+    opacity: 1;
+    transform: rotateY(-90deg) translateZ(var(--cube-side));
+  }
+  20% {
+    opacity: 1;
+    transform: rotateY(-90deg) translateZ(var(--cube-side-half));
+  }
+  70% {
+    opacity: 1;
+    transform: rotateY(-90deg) translateZ(var(--cube-side-half));
+  }
+  90% {
+    opacity: 1;
+    transform: rotateY(-90deg) translateZ(var(--cube-side));
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(-90deg) translateZ(var(--cube-side));
+  }
+}
+
+.cube .sides .right {
+  animation: right-animation 3s ease infinite;
+  animation-delay: 100ms;
+  transform: rotateY(90deg) translateZ(var(--cube-side));
+  animation-fill-mode: forwards;
+  transform-origin: 50% 50%;
+}
+@keyframes right-animation {
+  0% {
+    opacity: 1;
+    transform: rotateY(90deg) translateZ(var(--cube-side));
+  }
+  20% {
+    opacity: 1;
+    transform: rotateY(90deg) translateZ(var(--cube-side-half));
+  }
+  70% {
+    opacity: 1;
+    transform: rotateY(90deg) translateZ(var(--cube-side-half));
+  }
+  90% {
+    opacity: 1;
+    transform: rotateY(90deg) translateZ(var(--cube-side));
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(90deg) translateZ(var(--cube-side));
+  }
+}
